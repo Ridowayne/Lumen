@@ -1,15 +1,12 @@
-const winston = require('winston');
-const logger = winston.createLogger({
-  level: 'info',
-  format: format.combine(
-    format.colorize(),
-    format.timestamp(),
-    format.json(),
-    format.printf(({ timestamp, level, message, stack }) => {
-      return `[${timestamp}] ${level}: ${stack || message}`;
-    })
-  ),
+const { createLogger, format, transports } = require('winston');
+const { combine, timestamp, label, printf } = format;
 
+const myFormat = printf(({ level, message, label, timestamp }) => {
+  return `${timestamp} [${label}] ${level}: ${message}`;
+});
+
+const logger = createLogger({
+  format: combine(label({ label: 'right meow!' }), timestamp(), myFormat),
   transports: [new transports.Console()],
 });
 if (process.env.NODE_ENV !== 'production') {

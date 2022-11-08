@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const parishesSchema = new mongoose.Schema({
+const parishesSchema = mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Kindly provide the name of the parish'],
@@ -18,23 +18,17 @@ const parishesSchema = new mongoose.Schema({
   },
   website: {
     type: String,
-    validate: [validate.isUrl, 'Kindly provide the website of the parish'],
+    // validator: validator.isUrl,
   },
   email: {
     type: String,
     required: [true, 'Kindly provide the email address of the parish'],
-    validate: [
-      validator.isEmail,
-      'Kindly provide a valid email address of the parish',
-    ],
+    // validate: validator.isEmail,
   },
   phone: {
     type: Number,
     required: [true, 'Kindly provide the phone number of the parish'],
-    validate: [
-      validator.isMobile,
-      'Kindly provide a valid phone number of the parish',
-    ],
+    // validate: validator.isMobile,
   },
   location: {
     type: String,

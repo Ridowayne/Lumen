@@ -8,7 +8,7 @@ const logger = require('./helper/logger');
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log(`app listening on ${port}`);
+  logger.info(`app listening on ${port}`);
 });
 
 process.on('unhandledRejection', (err) => {
@@ -18,7 +18,7 @@ process.on('unhandledRejection', (err) => {
 });
 const db = process.env.DB_URI;
 mongoose.connect(db).then(() => {
-  'Database connection established';
+  logger.info('Database connection established');
 });
 
 process.on('uncaughtException', (err) => {
@@ -26,5 +26,5 @@ process.on('uncaughtException', (err) => {
 });
 
 process.on('uncaughtException', () => {
-  logger.log();
+  logger.error();
 });

@@ -13,7 +13,19 @@ exports.createParish = async (req, res, next) => {
     return next(error);
   }
 };
-exports.updateParish = async (req, res, next) => {};
+exports.updateParish = async (req, res, next) => {
+  try {
+    const parish = await Parish.findOne({ id: req.params.id });
+    await parish.update(req.body);
+    return res.status(200).json({
+      status: 'success',
+      message: 'Parish updated successfully',
+      data: parish,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
 exports.getParishes = async (req, res, next) => {
   try {
     const allParishes = await Parish.find().sort('-createdAt -1');
