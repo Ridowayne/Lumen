@@ -7,11 +7,11 @@ const parish = require('./parishRoute');
 const testimony = require('./testimonyRoute');
 const user = require('./userRoute');
 
-router.route('/donation', donation);
-router.route('/feedback', feedback);
-router.route('/intention', intention);
-router.route('/parish', parish);
-router.route('/testimony', testimony);
-router.route('/user', user);
+router.use('/donation', donation);
+router.use('/feedback', feedback);
+router.use('/intention', intention);
+router.use('/parish', parish);
+router.use('/testimony', testimony);
+router.use('/user', user);
 
 module.exports = router;

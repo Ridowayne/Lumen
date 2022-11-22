@@ -1,7 +1,7 @@
 const Donation = require('../models/donation');
 const AppError = require('../utils/appError');
 
-exports.createDonation = async (req, res, next) => {
+exports.makeADonation = async (req, res, next) => {
   try {
     const newDonation = await Donation.create(req.body);
     return res.status(201).json({

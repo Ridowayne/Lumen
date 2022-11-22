@@ -4,7 +4,7 @@ const donationSchema = new mongoose.Schema({
     type: String,
     required: [
       true,
-      'Kindly provide the organisattion and  type of charity that you wish to accomplish',
+      'Kindly provide the organisation and  type of charity that you wish to accomplish',
     ],
   },
   amount: {
