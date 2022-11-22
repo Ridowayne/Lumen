@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./docs/swagger');
 const ErrorResponse = require('./utils/appError');
 const globalError = require('./controllers/errorController');
 const routes = require('./routes/index');
@@ -11,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', routes);
 app.get('/', (req, res) => {
   res.send(
