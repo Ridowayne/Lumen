@@ -3,7 +3,9 @@ const AppError = require('../utils/appError');
 
 exports.createIntention = async (req, res, next) => {
   try {
-    const newIntention = await Intention.create(req.body);
+    const newIntention = await Intention.create(req.body).catch((err) => {
+      console.log(err);
+    });
     return res.status(201).json({
       status: 'success',
       message: 'Intentions created successfully',
@@ -28,8 +30,8 @@ exports.getAllIntentions = async (req, res, next) => {
 exports.getOneIntention = async (req, res, next) => {
   try {
     const getOneIntention = await Intention.findOne({
-      id: req.params.id,
-    }).populate('parishes');
+      _id: req.params.id,
+    }).populate('parish');
     return res.status(200).json({
       status: 'success',
       message: 'Intentions fetched successfully',

@@ -16,7 +16,7 @@ exports.makeADonation = async (req, res, next) => {
 
 exports.getDonatopns = async (req, res, next) => {
   try {
-    const allDonations = await Donation.findAll();
+    const allDonations = await Donation.find().sort({ createdAt: -1 });
     return res.status(200).json({
       status: 'success',
       message: 'all donations fetched successfully',
@@ -44,7 +44,7 @@ exports.getDonationsByCategory = async (req, res, next) => {
 
 exports.getOnedonation = async (req, res, next) => {
   try {
-    const oneDonation = await Donation.findOne({ id: req.params.id });
+    const oneDonation = await Donation.findOne({ _id: req.params.id });
     return res.status(200).json({
       status: 'success',
       message: 'one donation fetched successfully',

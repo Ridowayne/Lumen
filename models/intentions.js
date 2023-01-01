@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const intentionScema = new mongoose.Schema(
   {
-    petitioner: {
+    name: {
       type: String,
       required: [true, 'Kindly provide your name'],
     },
@@ -11,17 +11,17 @@ const intentionScema = new mongoose.Schema(
     },
     daysFrom: {
       type: Date,
-      required: [
-        true,
-        'Kindly select the days that you want your prayers to start from',
-      ],
+      // required: [
+      //   true,
+      //   'Kindly select the days that you want your prayers to start from',
+      // ],
     },
     daysTo: {
       type: Date,
-      required: [
-        true,
-        'Kindly select the days that you want your prayers to end',
-      ],
+      // required: [
+      //   true,
+      //   'Kindly select the days that you want your prayers to end',
+      // ],
     },
     uniqueCode: {
       type: String,

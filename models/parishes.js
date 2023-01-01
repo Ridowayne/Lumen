@@ -24,6 +24,7 @@ const parishesSchema = mongoose.Schema(
     email: {
       type: String,
       required: [true, 'Kindly provide the email address of the parish'],
+      unique: true,
       // validate: validator.isEmail,
     },
     phone: {

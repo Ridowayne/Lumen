@@ -17,7 +17,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', routes);
 app.get('/', (req, res) => {
   res.send(
-    'Welcome to lumen backend apis where all the beans have been cokked'
+    'Welcome to lumen backend apis where all the beans have been cooked'
   );
 });
 

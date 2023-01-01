@@ -12,6 +12,10 @@ const testimonySchema = new mongoose.Schema(
     testimony2: {
       type: String,
     },
+    isRead:{
+      type: Boolean,
+      default: false,
+    }
   },
   {
     timestamps: true,

@@ -15,7 +15,7 @@ exports.createTestimony = async (req, res, next) => {
 };
 exports.getTestimony = async (req, res, next) => {
   try {
-    const testimony = await Testimony.find();
+    const testimony = await Testimony.find().sort({ createdAt: -1 });
     return res.status(200).json({
       status: 'success',
       message: 'Testimonies fetched successfully',
@@ -28,6 +28,8 @@ exports.getTestimony = async (req, res, next) => {
 exports.getOneTestimony = async (req, res, next) => {
   try {
     const testimony = await Testimony.findOne({ _id: req.params.id });
+    testimony.isRead = true;
+    await testimony.save();
     return res.status(200).json({
       status: 'success',
       message: 'Testimony fectched successfully',

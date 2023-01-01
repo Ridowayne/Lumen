@@ -15,7 +15,7 @@ exports.createFeedBack = async (req, res, next) => {
 };
 exports.getFeedback = async (req, res, next) => {
   try {
-    const allFeedbacks = await Feedback.findOne();
+    const allFeedbacks = await Feedback.find().sort({ createdAt: -1 });
     return res.status(200).json({
       status: 'success',
       message: 'Feedback fetched successfully.',
