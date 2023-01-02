@@ -3,7 +3,7 @@
   "builds": [{ "src": "server.js", "use": "@vercel/node" }],
 
   "rewrites": [
-    { "src": "/(.*)", "dest": "/" },
+    { "source": "/(.*)", "destination": "/" },
     { "source": "/api/(.*)", "destination": "/api" }
   ]
 }
