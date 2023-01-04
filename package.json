@@ -24,6 +24,7 @@
     "multer": "^1.4.5-lts.1",
     "swagger-ui-express": "^4.6.0",
     "validator": "^13.7.0",
-    "winston": "^3.8.2"
+    "winston": "^3.8.2",
+    "yamljs": "^0.3.0"
   }
 }

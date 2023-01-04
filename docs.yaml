@@ -1,0 +1,552 @@
+openapi: 3.0.2
+info:
+  title: Lumen Express Backend Server
+  description: This is a REST API aplication made with express. It persists and retrives data.
+  contact: {}
+  version: '1.0'
+servers:
+  - url: https://lumenapi.onrender.com/api/v1
+  - url: https://localhost:5050/api/v1
+
+paths:
+  /donation/donate:
+    post:
+      tags:
+        - Donation
+      summary: create a new donation
+      description: This route is used to create a donation by the user
+      responses:
+        '201':
+          description: created successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+            schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /donation/allDonations:
+    get:
+      summary: Fetch all donations
+      description: This route is used to fetch all donations submitted by the users
+      tags:
+        - Donation
+      responses:
+        '200':
+          description: fetched successfully
+          content:
+            application/json:
+            schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /donation/:id:
+    get:
+      summary: Get one donation
+      description: This route is used to fetch one donation based on the id
+      tags:
+        - Donation
+      responses:
+        '200':
+          description: fetched successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /feedback/newFeedBack:
+    post:
+      summary: Create a new feedback
+      description: This route is used to create a new feedback by the user
+      tags:
+        - Feedback
+      responses:
+        '201':
+          description: created successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+            schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /feedback/allFeedBacks:
+    get:
+      summary: Get all feedback
+      description: This route is used to get all feedbacks submitted
+      tags:
+        - Feedback
+      responses:
+        '200':
+          description: fetched successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+            schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /feedback/:id:
+    get:
+      summary: Get one feedback
+      description: This route is used to get one feedback based on the id
+      tags:
+        - Feedback
+      responses:
+        '200':
+          description: fetched successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+            schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /feedback/feedbackType:
+    get:
+      summary:
+      description:
+      tags:
+        - Feedback
+      responses:
+        '200':
+          description: fetched successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+            schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /parish/createParish:
+    post:
+      summary: Create a new parish
+      description: This route is used to create a new parish by the administrator
+      tags:
+        - Parish
+      responses:
+        '201':
+          description: Created successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+            schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /parish/allParish:
+    get:
+      summary: Get all parish
+      description: This route is used to get all the parish available
+      tags:
+        - Parish
+      responses:
+        '200':
+          description: fetched successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+            schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /parish/:id:
+    get:
+      summary: Get one parish
+      description: This route is used to get one Parish based on the id
+      tags:
+        - Parish
+      responses:
+        '200':
+          description: fetched successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+            schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /parish/updateParish:
+    patch:
+      summary: Update a parish
+      description: This route is used to update a parish information
+      tags:
+        - Parish
+      responses:
+        '201':
+          description: upadted successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+            schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+  /user/login:
+    post:
+      summary: Login to the app
+      description: This route is used to login for the admin
+      tags:
+        - User
+      responses:
+        '200':
+          description: login successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /testimony/createTestimony:
+    post:
+      summary: Create a new Testimony
+      description: This route is used to create a new testimony by the user
+      tags:
+        - Testimony
+      responses:
+        '200':
+          description: fetched successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /testimony/getTestimony:
+    get:
+      summary: Fetch all testimonies
+      description: This route is used to retrieve all testimonies available
+      tags:
+        - Testimony
+      responses:
+        '200':
+          description: fetched successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /testimony/:id:
+    get:
+      summary: Gets one testimony
+      description: This route will be used to fetch one particular testimony based on the specified id
+      tags:
+        - Testimony
+      responses:
+        '200':
+          description: fetched successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+  /intention/create:
+  post:
+    summary: Creates a new intention
+    description: This route is used to create a new intention
+    tags:
+      - Intention
+    responses:
+      '201':
+        description: Created successfully
+        content:
+          application/json:
+            schema: {}
+      '400':
+        description: Bad Client request
+        content:
+          application/json:
+            schema: {}
+
+      '401':
+        description: Authentication failed
+        content:
+          application/json:
+            schema: {}
+      '500':
+        description: Server error
+        content:
+          application/json:
+            schema: {}
+
+  /intention/allIntentions:
+    get:
+      summary: Fetches all Intentions
+      description: This Route will be used to fetch all Intentions available
+      tags:
+        - Intention
+      responses:
+        '200':
+          description: fetched successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /intention/:id:
+    get:
+      summary: Get one intention
+      description: This route will fect the specified intention based on the id parameter
+      tags:
+        - Intention
+      responses:
+        '200':
+          description: fetched successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+
+  /intention/:parishId:
+    get:
+      summary: fetches intentions based on the parish ID
+      description: This route will fecth all intentions for the parish Id on the parameter
+      tags:
+        - Intention
+      responses:
+        '200':
+          description: fetched successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
+components:
+  parameters:
+  schemas:
+
+tags:
+  - name: Feedback
+  - name: Testimony
+  - name: Parish
+  - name: User
+  - name: Intention
+  - name: Donation
