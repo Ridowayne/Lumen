@@ -13,11 +13,28 @@ paths:
     post:
       tags:
         - Donation
-      summary: create a new donation
+      summary: Create a new donation
       description: This route is used to create a donation by the user
+      requestBody:
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/donation'
+              - example:
+                  FirstName: Aboy
+                  lastName: yoyo
+                  emailAddress: aboyo@example.com
+                  message: I love the game
+          example:
+            firstName: Aboy
+            lastName: yoyo
+            emailAddress: aboyo@example.com
+            message: I love the gameh
+      required: true
       responses:
         '201':
-          description: created successfully
+          description: Created successfully
           content:
             application/json:
               schema: {}
@@ -30,7 +47,7 @@ paths:
           description: Authentication failed
           content:
             application/json:
-            schema: {}
+              schema: {}
         '500':
           description: Server error
           content:
@@ -48,7 +65,7 @@ paths:
           description: fetched successfully
           content:
             application/json:
-            schema: {}
+              schema: {}
         '400':
           description: Bad Client request
           content:
@@ -99,6 +116,22 @@ paths:
       description: This route is used to create a new feedback by the user
       tags:
         - Feedback
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/feedbackSample'
+              - example:
+                  FirstName: Aboy
+                  lastName: yoyo
+                  emailAddress: aboyo@example.com
+                  message: I love the game
+          example:
+            firstName: Aboy
+            lastName: yoyo
+            emailAddress: aboyo@example.com
+            message: I love the gameh
+      required: true
       responses:
         '201':
           description: created successfully
@@ -114,7 +147,7 @@ paths:
           description: Authentication failed
           content:
             application/json:
-            schema: {}
+              schema: {}
         '500':
           description: Server error
           content:
@@ -142,7 +175,7 @@ paths:
           description: Authentication failed
           content:
             application/json:
-            schema: {}
+              schema: {}
         '500':
           description: Server error
           content:
@@ -170,7 +203,7 @@ paths:
           description: Authentication failed
           content:
             application/json:
-            schema: {}
+              schema: {}
         '500':
           description: Server error
           content:
@@ -198,7 +231,7 @@ paths:
           description: Authentication failed
           content:
             application/json:
-            schema: {}
+              schema: {}
         '500':
           description: Server error
           content:
@@ -226,7 +259,7 @@ paths:
           description: Authentication failed
           content:
             application/json:
-            schema: {}
+              schema: {}
         '500':
           description: Server error
           content:
@@ -254,7 +287,7 @@ paths:
           description: Authentication failed
           content:
             application/json:
-            schema: {}
+              schema: {}
         '500':
           description: Server error
           content:
@@ -282,7 +315,7 @@ paths:
           description: Authentication failed
           content:
             application/json:
-            schema: {}
+              schema: {}
         '500':
           description: Server error
           content:
@@ -310,12 +343,13 @@ paths:
           description: Authentication failed
           content:
             application/json:
-            schema: {}
+              schema: {}
         '500':
           description: Server error
           content:
             application/json:
               schema: {}
+
   /user/login:
     post:
       summary: Login to the app
@@ -427,34 +461,35 @@ paths:
           content:
             application/json:
               schema: {}
-  /intention/create:
-  post:
-    summary: Creates a new intention
-    description: This route is used to create a new intention
-    tags:
-      - Intention
-    responses:
-      '201':
-        description: Created successfully
-        content:
-          application/json:
-            schema: {}
-      '400':
-        description: Bad Client request
-        content:
-          application/json:
-            schema: {}
 
-      '401':
-        description: Authentication failed
-        content:
-          application/json:
-            schema: {}
-      '500':
-        description: Server error
-        content:
-          application/json:
-            schema: {}
+  /intention/create:
+    post:
+      summary: Creates a new intention
+      description: This route is used to create a new intention
+      tags:
+        - Intention
+      responses:
+        '201':
+          description: Created successfully
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Client request
+          content:
+            application/json:
+              schema: {}
+
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema: {}
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema: {}
 
   /intention/allIntentions:
     get:
@@ -541,7 +576,28 @@ paths:
               schema: {}
 components:
   parameters:
+    id:
+      name: id
+      in: path
+      schema:
+        type: string
+        example: 'e67c09e4-0b99-40b3-ad85-e750c98b8658'
+      required: true
+      style: simple
+      description: The mongodb _id to fetch
+
   schemas:
+    donation:
+      title: donation
+      required:
+        - name
+        - post
+      type: object
+      properties:
+        name:
+          type: string
+        post:
+          type: string
 
 tags:
   - name: Feedback
