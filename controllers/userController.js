@@ -10,6 +10,22 @@ const userToken = async (id, email) => {
     issuer: process.env.JWT_ISSUER,
   });
 };
+const createSendToken = (user, statusCode, req, res) => {
+  const token = userToken(user._id, user.email);
+
+  res.cookie('jwt', token, {
+    httpOnly: true,
+    secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+  });
+  user.password = undefined;
+  res.status(statusCode).json({
+    status: 'success',
+    token,
+    data: {
+      user,
+    },
+  });
+};
 
 exports.signUp = async (req, res, next) => {
   try {
@@ -18,13 +34,7 @@ exports.signUp = async (req, res, next) => {
       return new AppError('Email already in use', 401);
     }
     const newUser = await User.create(req.body);
-    const token = await userToken(newUser.id, newUser.email);
-    return res.status(201).json({
-      status: 'success',
-      Message: 'New user created successfully.',
-      data: newUser,
-      token: token,
-    });
+    createSendToken(newUser, 201, req, res);
   } catch (error) {
     return next(error);
   }
@@ -47,13 +57,7 @@ exports.signIn = async (req, res, next) => {
         401
       );
     }
-    const token = await userToken(user.id, user.email);
-    return res.status(200).json({
-      status: 'success',
-      message: 'User logged in successfully',
-      data: user,
-      token,
-    });
+    createSendToken(user, 200, req, res);
   } catch (error) {
     return next(error);
   }
