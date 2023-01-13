@@ -22,15 +22,17 @@ paths:
             allOf:
               - $ref: '#/components/schemas/donation'
               - example:
-                  FirstName: Aboy
-                  lastName: yoyo
-                  emailAddress: aboyo@example.com
-                  message: I love the game
+                  charityOrganisation: BFREE Foundation
+                  amount: 12000
+                  emailAddress: udeme@example.com
+                  uniqueCode: isa7y83d9yqwyd
+                  receiptOfPayment: image.jpg
           example:
-            firstName: Aboy
-            lastName: yoyo
-            emailAddress: aboyo@example.com
-            message: I love the gameh
+            charityOrganisation: BFREE Foundation
+            amount: 12000
+            emailAddress: udeme@example.com
+            uniqueCode: isa7y83d9yqwyd
+            receiptOfPayment: image.jpg
       required: true
       responses:
         '201':
@@ -88,6 +90,7 @@ paths:
       description: This route is used to fetch one donation based on the id
       tags:
         - Donation
+      parameters: []
       responses:
         '200':
           description: fetched successfully
@@ -122,15 +125,17 @@ paths:
             allOf:
               - $ref: '#/components/schemas/feedbackSample'
               - example:
-                  FirstName: Aboy
-                  lastName: yoyo
-                  emailAddress: aboyo@example.com
-                  message: I love the game
+                  navigationRatings: 4
+                  usefullnessRatings: 4
+                  bestFeature: card payment option
+                  worstFeature: feedback
+                  advise: it is a good idea to help us pray
           example:
-            firstName: Aboy
-            lastName: yoyo
-            emailAddress: aboyo@example.com
-            message: I love the gameh
+            navigationRatings: 4
+            usefullnessRatings: 4
+            bestFeature: card payment option
+            worstFeature: feedback
+            advise: it is a good idea to help us pray
       required: true
       responses:
         '201':
@@ -188,6 +193,7 @@ paths:
       description: This route is used to get one feedback based on the id
       tags:
         - Feedback
+      parameters: []
       responses:
         '200':
           description: fetched successfully
@@ -244,6 +250,35 @@ paths:
       description: This route is used to create a new parish by the administrator
       tags:
         - Parish
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/parishSample'
+              - example:
+                  name: Udeme Lumen church
+                  description: Mosck parish cretaed
+                  image: pathtoimage
+                  address: 12 Udeme street Lagos, Nigeria.
+                  website: www.UdemeLumen.com
+                  email:
+                  phone: 2349074452956
+                  location: 160
+                  parishOfficeHours: 8am - 5pm
+                  daysOfMass: Sunday
+                  confessionDays: Mondays & Saturday
+          example:
+            name: Udeme Lumen church
+            description: Mosck parish cretaed
+            image: pathtoimage
+            address: 12 Udeme street Lagos, Nigeria.
+            website: www.UdemeLumen.com
+            email:
+            phone: 2349074452956
+            location: 160
+            parishOfficeHours: 8am - 5pm
+            daysOfMass: Sunday
+            confessionDays: Mondays & Saturday
       responses:
         '201':
           description: Created successfully
@@ -300,6 +335,7 @@ paths:
       description: This route is used to get one Parish based on the id
       tags:
         - Parish
+      parameters: []
       responses:
         '200':
           description: fetched successfully
@@ -356,6 +392,17 @@ paths:
       description: This route is used to login for the admin
       tags:
         - User
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/loginSample'
+              - example:
+                  email: Udeme@example.com
+                  password: Udeme@1235
+          example:
+            email: Udeme@example.com
+            password: Udeme@1235
       responses:
         '200':
           description: login successfully
@@ -384,6 +431,19 @@ paths:
       description: This route is used to create a new testimony by the user
       tags:
         - Testimony
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/testimonySample'
+              - example:
+                  name: Udeme
+                  testimony1: Udeme@1235
+                  testimony2: Thank God
+          example:
+            name: Udeme
+            testimony1: Thank God
+            testimony2: Thank God
       responses:
         '200':
           description: fetched successfully
@@ -440,6 +500,7 @@ paths:
       description: This route will be used to fetch one particular testimony based on the specified id
       tags:
         - Testimony
+      parameters: []
       responses:
         '200':
           description: fetched successfully
@@ -468,6 +529,29 @@ paths:
       description: This route is used to create a new intention
       tags:
         - Intention
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/intentionSample'
+              - example:
+                  name: Udeme
+                  prayerRequest: God help me
+                  daysFrom: December 12 2023
+                  daysTo: December 31 2023
+                  uniqueCode: j7adu9q677qt8
+                  parish: Udeme Lumen Parish
+                  prayerTime: 12am
+                  receiptOfPayment: pathtoImage
+          example:
+            name: Udeme
+            prayerRequest: God help me
+            daysFrom: December 12 2023
+            daysTo: December 31 2023
+            uniqueCode: j7adu9q677qt8
+            parish: Udeme Lumen Parish
+            prayerTime: 12am
+            receiptOfPayment: pathtoImage
       responses:
         '201':
           description: Created successfully
@@ -479,7 +563,6 @@ paths:
           content:
             application/json:
               schema: {}
-
         '401':
           description: Authentication failed
           content:
@@ -587,16 +670,103 @@ components:
       description: The mongodb _id to fetch
 
   schemas:
-    donation:
-      title: donation
+    intentionSample:
+      title: intentionSample
       required:
         - name
-        - post
+        - prayerRequest
+        - daysFrom
+        - daysTo
+        - uniqueCode
+        - parish
+        - prayerTime
+        - paymentReceipt
       type: object
       properties:
         name:
           type: string
-        post:
+        prayerRequest:
+          type: date
+        daysFrom:
+          type: date
+        uniqueCode:
+          type: string
+        parish:
+          type: string
+        prayerTime:
+          type: string
+        paymentReceipt:
+          type: string
+    testimonySample:
+      title: testimonySample
+      required:
+        - name
+        - testimony1
+        - testimony2
+      type: object
+      properties:
+        name:
+          type: string
+        testimony1:
+          type: string
+        testimony2:
+          type: string
+    loginSample:
+      title: loginSample
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    parishSample:
+      title: parishSample
+      required:
+        - name
+        - description
+        - image
+        - address
+        - website
+        - email
+        - phone
+        - location
+        - parishOfficeHours
+        - daysOfMass
+        - confessionDays
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        address:
+          type: string
+          address:
+            type: string
+    donation:
+      title: donation
+      required:
+        - charityOrganisation
+        - amount
+        - uniqueCode
+        - paymentReceipt
+        - emailAddress
+      type: object
+      properties:
+        charityOrganisation:
+          type: string
+        amount:
+          type: number
+        uniqueCode:
+          type: string
+        paymentReceipt:
+          type: string
+        emailAddress:
           type: string
 
 tags:

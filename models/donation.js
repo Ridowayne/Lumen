@@ -24,6 +24,9 @@ const donationSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    emailAddress: {
+      type: String,
+    },
   },
   {
     timestamps: true,
